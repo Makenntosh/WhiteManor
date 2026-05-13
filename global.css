@@ -1,0 +1,24 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+main {
+    margin-top: 75px;
+}
+
+.cert{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.cert_photo{
+    display: flex;
+    gap: 25px;
+}
+
+.cert_photo img {
+    width: 250px;
+    height: 350px;
+}

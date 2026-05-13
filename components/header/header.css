@@ -1,0 +1,33 @@
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 50px;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 2;
+    box-sizing: border-box;
+}
+
+header.island {
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    min-width: 500px;
+    height: 64px;
+    border-radius: 40px;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    padding: 0 40px;
+}
+
+.navbar a {
+    color: black;
+    text-decoration: none;
+}
