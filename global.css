@@ -1,89 +1,63 @@
+/* =========================================
+   ИМПОРТЫ И БАЗОВЫЕ НАСТРОЙКИ
+========================================= */
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap');
 
 html {
     scroll-behavior: smooth;
 }
 
-section {
-    scroll-margin-top: 100px; /* Чтобы секция не прилипала вплотную к фиксированному хедеру */
-}
-
-*{
+/* Глобальный сброс — box-sizing решает проблему с padding */
+* {
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
     font-family: "Comfortaa", sans-serif;
     color: #6D5A44;
+}
+
+section {
+    scroll-margin-top: 100px; /* Отступ при якорных ссылках, чтобы хедер не перекрывал текст */
 }
 
 body {
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    position: relative;
-
-
     background: #f7f6f5;
+    position: relative;
+    min-height: 100vh;
 }
 
 main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
 }
 
+/* Текстура шума на фоне */
 main::before {
     content: "";
-    position: absolute;
+    position: fixed;
     inset: 0;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    
     opacity: 0.04; 
     filter: contrast(120%) brightness(100%);
     pointer-events: none;
+    z-index: 0;
 }
 
-/* .about_manor {
-    box-sizing: border-box;
-    max-width: 1280px;
-    height: 450px;
-    display: flex;
-
-    border-radius: 15px;
-    
-}
-
-.about_manor_block {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 50px;
-    padding: 0 75px;
-}
-
-.about_manor_block span {
-    color: #68a154;
-}
-
-.manor_photo_block{
-
-}
-
-.manor_photo_block img {
-    width: 500px;
-    height: 450px;
-
-    border-radius: 15px;
-} */
-
-
-
-
+/* =========================================
+   1. БЛОК: О НАС
+========================================= */
 .about {
     width: 100%;
-    max-width: 1280px;
+    max-width: 1280px; /* Ограничение для больших экранов */
     padding: 150px 20px 75px 20px;
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
 }
 
 .about_container {
@@ -100,7 +74,7 @@ main::before {
 .about_image img {
     width: 100%;
     border-radius: 40px;
-    box-shadow: 20px 20px 0px #F8F3EE; /* Декоративная подложка */
+    box-shadow: 20px 20px 0px #F8F3EE; 
 }
 
 .about_experience_badge {
@@ -113,15 +87,14 @@ main::before {
     box-shadow: 0 10px 30px rgba(109, 90, 68, 0.3);
 }
 
+.about_experience_badge span, .about_experience_badge p {
+    color: white;
+}
+
 .about_experience_badge span {
     display: block;
     font-size: 24px;
     font-weight: 700;
-    color: white;
-}
-
-.about_experience_badge p{
-    color: white;
 }
 
 .about_content {
@@ -146,7 +119,7 @@ main::before {
 }
 
 .about_content h2 span {
-    color: #68a154; /* Акцентный зеленый */
+    color: #68a154; 
 }
 
 .about_description {
@@ -170,18 +143,6 @@ main::before {
     max-width: 120px;
 }
 
-.feature_icon {
-    font-size: 28px;
-    width: 60px;
-    height: 60px;
-    background: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 18px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-}
-
 .feature_mini p {
     font-size: 13px;
     color: #6D5A44;
@@ -189,41 +150,34 @@ main::before {
     line-height: 1.2;
 }
 
-/* Адаптив для планшетов/телефонов */
-@media (max-width: 992px) {
-    .about_container {
-        flex-direction: column;
-        gap: 60px;
-    }
-    .about_image img {
-        box-shadow: none;
-    }
-    .about_content h2 {
-        font-size: 32px;
-    }
-}
-
-
-
-
-
+/* =========================================
+   2. БЛОК: ПОЧЕМУ МЫ (ЦЕННОСТИ)
+========================================= */
 .why_we {
+    width: 100%;
+    max-width: 1280px; /* Ограничение 1280 */
+    margin: 0 auto;
+    padding: 50px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 1280px;
-    padding: 50px 0;
     gap: 75px;
+    position: relative;
+    z-index: 1;
 }
 
 .why_we h2 {
     font-size: 38px;
     color: #68a154;
+    text-align: center;
 }
 
 .why_we_items_block {
     display: flex;
+    flex-wrap: wrap; /* Позволяет блокам падать вниз, если не влезают */
+    justify-content: center;
     gap: 50px;
+    width: 100%;
 }
 
 .why_we_item {
@@ -232,25 +186,34 @@ main::before {
     align-items: center;
     gap: 10px;
     text-align: center;
+    flex: 1 1 200px;
+    max-width: 280px;
 }
 
 .why_we_item img {
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
 }
 
 .why_we_item h3 {
     color: #68a154;
+    font-size: 22px;
 }
 
+/* =========================================
+   3. БЛОК: УСЛУГИ И ЦЕНЫ
+========================================= */
 .services {
-    max-width: 1280px;
-    width: 1280; 
+    width: 100%;
+    max-width: 1280px; /* Ограничение 1280 */
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     gap: 50px;
-    padding: 80px 0;
+    padding: 80px 20px;
+    position: relative;
+    z-index: 1;
 }
 
 .services h2 {
@@ -268,22 +231,22 @@ main::before {
 }
 
 .services_item {
-    box-sizing: border-box;
-    width: 301.25px;
+    width: 100%;
+    max-width: 301.25px; /* Сохраняем твой размер карточки */
     min-height: 250px;
     padding: 30px 25px;
-    border-radius: 24px; /* Более мягкое скругление */
+    border-radius: 24px;
     background: #ffffff;
-    box-shadow: 0 10px 30px rgba(109, 90, 68, 0.08); /* Очень мягкая тень */
+    box-shadow: 0 10px 30px rgba(109, 90, 68, 0.08);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    border: 1px solid rgba(179, 156, 133, 0.1); /* Тонкая рамка в цвет лого */
+    border: 1px solid rgba(179, 156, 133, 0.1);
 }
 
 .services_item:hover {
-    transform: translateY(-10px); /* Всплытие при наведении */
+    transform: translateY(-10px);
     box-shadow: 0 20px 40px rgba(109, 90, 68, 0.15);
     border-color: #8D745E;
 }
@@ -306,7 +269,7 @@ main::before {
     justify-content: space-between;
     align-items: center;
     padding-bottom: 8px;
-    border-bottom: 1px dashed rgba(179, 156, 133, 0.3); /* Пунктирный разделитель */
+    border-bottom: 1px dashed rgba(179, 156, 133, 0.3);
 }
 
 .room_type {
@@ -321,20 +284,16 @@ main::before {
     font-weight: 700;
 }
 
-.services_item:hover .more_info {
-    opacity: 1;
-    color: #68a154; /* Твой зеленый проявляется при наведении */
-}
-
-
-/*Блок с контактами*/
-
-
+/* =========================================
+   4. БЛОК: КОНТАКТЫ
+========================================= */
 .contacts {
-    width: 1280px;
-    max-width: 1280px;
+    width: 100%;
+    max-width: 1280px; /* Ограничение 1280 */
     padding: 100px 20px;
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
 }
 
 .contacts_container {
@@ -451,59 +410,59 @@ main::before {
     transform: translateY(-2px);
 }
 
-/* Адаптивность для мобилок */
-@media (max-width: 992px) {
-    .contacts_container {
-        flex-direction: column;
-    }
-    .contacts_content {
-        padding: 40px;
-    }
-    .contacts_map {
-        height: 350px;
-    }
-}
-
-
-/*Блок с сертификатами*/
-
-
-.cert{
-    width: 1280px;
+/* =========================================
+   5. БЛОК: СЕРТИФИКАТЫ
+========================================= */
+.cert {
+    width: 100%;
+    max-width: 1280px; /* Ограничение 1280 */
+    margin: 0 auto;
+    padding: 50px 20px;
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    align-items: center;
+    gap: 40px;
+    position: relative;
+    z-index: 1;
 }
 
-.cert h2{
-    font-size: 32px;
+.cert h2 {
+    font-size: 38px;
     color: #68a154;
+    text-align: center;
 }
 
-.cert_photo{
+.cert_photo {
     display: flex;
-    gap: 25px;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
 }
 
 .cert_photo img {
+    max-width: 100%;
     width: 250px;
-    height: 350px;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
-
-
-
-
+/* =========================================
+   6. ФУТЕР
+========================================= */
 .main_footer {
     width: 100%;
-    background-color: #4b3b2a; /* Темный коричневый из твоего лого */
+    background-color: #4b3b2a; 
     color: #F8F3EE;
     padding: 80px 0 30px 0;
     margin-top: 100px;
+    position: relative;
+    z-index: 1;
 }
 
 .footer_container {
-    max-width: 1280px;
+    width: 100%;
+    max-width: 1280px; /* Ограничение 1280 */
     margin: 0 auto;
     padding: 0 20px;
 }
@@ -513,7 +472,7 @@ main::before {
     justify-content: space-between;
     gap: 50px;
     padding-bottom: 50px;
-    border-bottom: 1px solid rgba(248, 243, 238, 0.1); /* Тонкая линия разделения */
+    border-bottom: 1px solid rgba(248, 243, 238, 0.1);
 }
 
 .footer_brand {
@@ -522,7 +481,7 @@ main::before {
 }
 
 .footer_logo h2 {
-    color:#F8F3EE ;
+    color: #F8F3EE;
     margin-bottom: 20px;
 }
 
@@ -550,14 +509,14 @@ main::before {
 }
 
 .social_link:hover {
-    background: #68a154; /* Твой зеленый при наведении */
+    background: #68a154;
     border-color: #68a154;
 }
 
-.footer_nav h4 {
+.footer_nav h4, .footer_info h4 {
     font-size: 18px;
     margin-bottom: 25px;
-    color: #B39C85; /* Светлый беж для заголовков */
+    color: #B39C85;
 }
 
 .footer_nav ul {
@@ -585,20 +544,15 @@ main::before {
 .footer_info {
     display: flex;
     flex-direction: column;
-    gap: 25px;
-}
-
-.footer_info h4 {
-    font-size: 18px;
-    color: #B39C85; /* Светлый беж для заголовков */
+    gap: 10px;
 }
 
 .footer_info p {
     color: #F8F3EE;
+    margin-bottom: 10px;
 }
 
 .footer_phone {
-    display: block;
     font-size: 20px;
     font-weight: 700;
     color: #F8F3EE;
@@ -625,8 +579,34 @@ main::before {
     text-decoration: none;
 }
 
-/* Адаптив */
-@media (max-width: 768px) {
+
+/* =========================================
+   АДАПТИВНОСТЬ (MEDIA QUERIES)
+========================================= */
+
+/* --- Планшеты (до 992px) --- */
+@media (max-width: 992px) {
+    .about_container {
+        flex-direction: column;
+        gap: 50px;
+    }
+    .about_image img {
+        box-shadow: none; /* Убираем декоративную тень на мобилках */
+    }
+    .about_content h2 {
+        font-size: 34px;
+    }
+    
+    .contacts_container {
+        flex-direction: column;
+    }
+    .contacts_content {
+        padding: 40px 30px;
+    }
+    .contacts_map {
+        height: 400px;
+    }
+    
     .footer_top {
         flex-direction: column;
         gap: 40px;
@@ -635,5 +615,72 @@ main::before {
         flex-direction: column;
         gap: 15px;
         text-align: center;
+    }
+}
+
+/* --- Телефоны (до 768px) --- */
+@media (max-width: 768px) {
+    /* Глобально уменьшаем отступы и шрифты */
+    .about, .why_we, .services, .contacts, .cert {
+        padding: 50px 15px;
+    }
+    
+    .about_content h2, 
+    .why_we h2, 
+    .services h2, 
+    .contacts_content h2, 
+    .cert h2 {
+        font-size: 28px !important;
+    }
+    
+    .about {
+        padding-top: 100px; 
+    }
+    .about_features {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .feature_mini {
+        max-width: 100%;
+        flex-direction: row;
+        align-items: center;
+    }
+    
+    .why_we_item {
+        max-width: 100%;
+    }
+    
+    .contacts_container {
+        border-radius: 25px;
+    }
+    .contacts_content {
+        padding: 30px 20px;
+    }
+    .contact_text p {
+        font-size: 16px;
+    }
+    
+    .main_footer {
+        padding: 50px 0 30px 0;
+        margin-top: 50px;
+    }
+    .footer_logo h2 {
+        font-size: 24px;
+    }
+}
+
+/* --- Маленькие смартфоны (до 480px) --- */
+@media (max-width: 480px) {
+    .about_experience_badge {
+        right: 10px;
+        bottom: -15px;
+        padding: 15px 20px;
+    }
+    .about_experience_badge span {
+        font-size: 18px;
+    }
+    
+    .cert_photo img {
+        width: 100%; /* Сертификат растягивается на ширину экрана телефона */
     }
 }
