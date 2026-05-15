@@ -76,3 +76,39 @@ header {
     background: #6D5A44;
     color: white;
 }
+
+/* --- ТЕЛЕФОНЫ (до 768px) --- */
+@media (max-width: 840px) {
+    header {
+        width: 100%;
+        margin-top: 0;
+        border-radius: 0;
+        height: 60px; /* Делаем чуть компактнее */
+        padding: 0 15px;
+    }
+
+    .logotype img {
+        height: 35px; /* Уменьшаем логотип */
+    }
+
+    /* Прячем навигацию полностью */
+    .navbar {
+        display: none; 
+    }
+
+    .header_contacts a {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+}
+
+/* --- МАЛЕНЬКИЕ ЭКРАНЫ (до 480px) --- */
+@media (max-width: 480px) {
+    .header_contacts a {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+    .logotype img {
+        height: 28px;
+    }
+}
