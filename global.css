@@ -293,7 +293,132 @@ main::before {
 }
 
 /* =========================================
-   4. БЛОК: КОНТАКТЫ
+   4. БЛОК: ГАЛЕРЕЯ
+========================================= */
+
+.gallery {
+    width: 100%;
+    padding: 100px 20px;
+}
+
+.gallery_container {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.gallery_header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.gallery_header h2 {
+    font-size: 42px;
+    color: #6D5A44;
+    margin-bottom: 15px;
+}
+
+.gallery_header p {
+    color: #8D745E;
+    font-size: 18px;
+    line-height: 1.5;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* --- Сетка --- */
+.gallery_grid {
+    display: grid;
+    /* Автоматически создает колонки от 350px до заполнения экрана */
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+/* --- Карточка с фото --- */
+.gallery_item {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    aspect-ratio: 4 / 3; /* Фиксированные пропорции для всех фото (прямоугольник) */
+    box-shadow: 0 10px 30px rgba(109, 90, 68, 0.08);
+    cursor: pointer;
+    background: #ffffff; /* Заглушка, пока грузится фото */
+}
+
+.gallery_item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Фото заполнит блок без искажений */
+    transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* --- Затемнение и подпись при наведении --- */
+.gallery_overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(109, 90, 68, 0.7) 0%, rgba(109, 90, 68, 0) 50%);
+    display: flex;
+    align-items: flex-end;
+    padding: 25px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.gallery_overlay span {
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 600;
+    transform: translateY(15px);
+    transition: transform 0.4s ease;
+}
+
+/* --- Эффекты Hover --- */
+.gallery_item:hover img {
+    transform: scale(1.08); /* Легкий зум картинки */
+}
+
+.gallery_item:hover .gallery_overlay {
+    opacity: 1; /* Появление градиента */
+}
+
+.gallery_item:hover .gallery_overlay span {
+    transform: translateY(0); /* Выезд текста снизу */
+}
+
+/* --- Адаптив для телефонов --- */
+@media (max-width: 768px) {
+    .gallery {
+        padding: 60px 15px;
+    }
+    
+    .gallery_header h2 {
+        font-size: 28px !important; /* Уравниваем с твоим общим мобильным стилем */
+    }
+    
+    .gallery_grid {
+        grid-template-columns: 1fr; /* Одна колонка на телефонах */
+        gap: 20px;
+    }
+    
+    .gallery_item {
+        aspect-ratio: 16 / 10; /* Делаем картинки чуть более вытянутыми горизонтально */
+    }
+    
+    /* На телефонах лучше сразу показывать подписи, так как нет hover */
+    .gallery_overlay {
+        opacity: 1;
+        background: linear-gradient(to top, rgba(109, 90, 68, 0.8) 0%, rgba(109, 90, 68, 0) 60%);
+    }
+    .gallery_overlay span {
+        transform: translateY(0);
+        font-size: 16px;
+    }
+}
+
+/* =========================================
+   5. БЛОК: КОНТАКТЫ
 ========================================= */
 .contacts {
     width: 100%;
@@ -424,7 +549,7 @@ main::before {
 }
 
 /* =========================================
-   5. БЛОК: СЕРТИФИКАТЫ
+   6. БЛОК: СЕРТИФИКАТЫ
 ========================================= */
 .cert {
     width: 100%;
@@ -461,7 +586,7 @@ main::before {
 }
 
 /* =========================================
-   6. ФУТЕР
+   7. ФУТЕР
 ========================================= */
 .main_footer {
     width: 100%;
@@ -598,7 +723,7 @@ main::before {
 ========================================= */
 
 /* --- Планшеты (до 992px) --- */
-@media (max-width: 992px) {
+@media (max-width: 1100px) {
     .about_container {
         flex-direction: column;
         gap: 50px;
